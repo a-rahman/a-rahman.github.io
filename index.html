@@ -2,10 +2,10 @@
 <html>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.0"> </script>
   <script>
-  const model = tf.loadModel('https://a-rahman.github.io/model.json');
+  const model = await tf.loadModel('https://a-rahman.github.io/model.json');
   for (var a=[],i=0;i<100;++i) a[i]=Math.random();
-  const sample = tf.tensor3d(a,[1,a.length,1]).print()
-  const prediction = model.predict(sample);
+  const sample = tf.tensor3d(a,[1,a.length,1]);
+  const prediction = model.predict(sample).print();
   </script>
   <head>
 		<title>Abrar Rahman</title>
