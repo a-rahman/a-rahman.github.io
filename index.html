@@ -4,7 +4,8 @@
   <script>
   const model = tf.loadModel('https://a-rahman.github.io/model.json');
   for (var a=[],i=0;i<100;++i) a[i]=Math.random();
-  tf.tensor3d(a,[1,a.length,1]).print()
+  const sample = tf.tensor3d(a,[1,a.length,1]).print()
+  const prediction = model.predict(sample);
   </script>
   <head>
 		<title>Abrar Rahman</title>
