@@ -3,6 +3,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.0"> </script>
   <script>
   const model = tf.loadModel('https://a-rahman.github.io/model.json');
+  for (var a=[],i=0;i<100;++i) a[i]=Math.random();
+  tf.tensor3d(a,[1,a.length,1])
   </script>
   <head>
 		<title>Abrar Rahman</title>
