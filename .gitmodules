@@ -1,0 +1,6 @@
+[submodule "VGM-Piano-Composer"]
+	path = VGM-Piano-Composer
+	url = https://github.com/a-rahman/VGM-Piano-Composer.git
+[submodule "VGM_Piano_Composer"]
+	path = VGM_Piano_Composer
+	url = https://github.com/a-rahman/VGM_Piano_Composer.git
