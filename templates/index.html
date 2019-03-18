@@ -83,8 +83,8 @@
           <h2 class="text-white mt-0">Video Game Music Generator</h2>
           <hr class="divider light my-4">
           <p class="text-white-50 mb-4">Choose the style of music to generate.</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">FFVII</a>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Ocarina of Time</a>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="ffvii.mid">FFVII</a>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="ocarina.mid">Ocarina of Time</a>
           <a class="btn btn-light btn-xl js-scroll-trigger" href="default.mid">Default</a>
           <hr class="divider light my-4">
           
@@ -109,9 +109,27 @@
                                     <a href="#" data-toggle="collapse" data-target="#collapseOneA">Tell me more about the model.</a>
                                 </div>
                                 <div class="card-body collapse" data-parent="#modelExplanation" id="collapseOneA">
-                                    <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments is how the model is trained.</p>
-                                    <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the layer above the output. How much the parameter changes is calculated in a process called gradient descent. The change is taken as the error in that layer, and is used similarly to change the parameters of the layer above that. This way the changes move up the layers all the way back to the input, in other words the errors propagate back through the whole model.</p>
-                                    <p>Since we are dealing with music, the notes played in the past have a strong influence on the next note played. This makes it necessary for the model to have some kind of memory. This model has memory in the form of Long Short Term Memory (LSTM) layers. During model training, the LSTM layer tunes a forget gate an remember gate as it learns which past notes are most relevant to the future. In this way longer term patterns in the music can be remembered, rather than just what is in the immediate past.</p>
+                                    <div class="panel-group" id="details">
+                                        <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments is how the model is trained.</p>
+                                        <div class="panel">
+                                            <a data-toggle="collapse" data-parent="#details" href="#backprop">About Back Propagation &raquo;
+                                            </a>
+                                            <div id="backprop" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                  <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the layer above the output. How much the parameter changes is calculated in a process called gradient descent. The change is taken as the error in that layer, and is used similarly to change the parameters of the layer above that. This way the changes move up the layers all the way back to the input, in other words the errors propagate back through the whole model.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel ">
+                                            <a data-toggle="collapse" data-parent="#details" href="#lstm">About LSTMs &raquo;
+                                            </a>
+                                            <div id="lstm" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>Since we are dealing with music, the notes played in the past have a strong influence on the next note played. This makes it necessary for the model to have some kind of memory. This model has memory in the form of Long Short Term Memory (LSTM) layers. During model training, the LSTM layer tunes a forget gate an remember gate as it learns which past notes are most relevant to the future. In this way longer term patterns in the music can be remembered, rather than just what is in the immediate past.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!--
