@@ -101,7 +101,7 @@
                     </div>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                          <p>Unlike other types of music files, midi files don't contain a representation of the waveforms of the sounds, but the notes that an instrument would play. Given a set of midi files with only piano tracks, the model takes in 100 notes and tries to guess what the next note is. After countless iterations of guessing and checking, the model starts doing a fair job of guessing what comes next. To generate it's own music, you can start the model off with some notes, let it get the next note, feed that note back into the model, and the model will go off to create it's own score.</p>
+                          <p>Unlike other types of music files, midi files don't contain a representation of the waveforms of the sounds, but the notes that an instrument would play. Given a set of midi files with only piano tracks, the model takes in 100 notes and tries to guess what the next note is. After countless iterations of guessing and checking, the model starts doing a fair job of guessing what comes next. To generate it's own music, you can start the model off with some notes, let it guess the next note, feed that note back into the model, starting the process that will let the model to go off and create it's own score.</p>
                         </div>
                         <div class="card-body w3-dark-grey" id="modelExplanation">
                             <div class="card">
@@ -109,10 +109,12 @@
                                     <a href="#" data-toggle="collapse" data-target="#collapseOneA">Tell me more about the model.</a>
                                 </div>
                                 <div class="card-body collapse" data-parent="#modelExplanation" id="collapseOneA">
-                                    <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs stages of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output.</p>
-                                    <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the stage above the output</p>
+                                    <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments is how the model is trained.</p>
+                                    <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the layer above the output. How much the parameter changes is calculated in a process called gradient descent. The change is taken as the error in that layer, and is used similarly to change the parameters of the layer above that. This way the changes move up the layers all the way back to the input, in other words the errors propagate back through the whole model.</p>
+                                    <p>Since we are dealing with music, the notes played in the past have a strong influence on the next note played. This makes it necessary for the model to have some kind of memory. This model has memory in the form of Long Short Term Memory (LSTM) layers. During model training, the LSTM layer tunes a forget gate an remember gate as it learns which past notes are most relevant to the future. In this way longer term patterns in the music can be remembered, rather than just what is in the immediate past.</p>
                                 </div>
                             </div>
+                            <!--
                             <div class="card">
                                 <div class="card-header">
                                     <a href="#" data-toggle="collapse" data-target="#collapseOneB">Child B</a>
@@ -121,6 +123,7 @@
                                     Another flipp runch wolf moon tempor, sunt aliqua put a bird.
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -134,9 +137,40 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            <p>There are several points in which the model is deficient. </p>
+                            
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#timing">Note timing</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="timing">
+                                    Note spacing is not variable. The training data had a commonly used spacing, so the all of the output used that spacing rather than learn what the spacing should be. To implement this, a larger model would be needed to learn these timings.
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#cutoff">Song Cutoff</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="cutoff">
+                                  <p>There is no sense of the beginning or end of the song. The songs the model is trained on is treated as if it is one long song it is trying to learn instead of separate tracks. So when a song is generated, there is a sharp cutoff rather a planned ending. A way to deal with this might be to encode the start and end of a song as a type of note itself.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#instruments">Instruments</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="instruments">
+                                  <p>The generator only makes piano music. To generate a full orchestra the proper training data is needed and would need a larger network to deal with so many instruments.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#genre">Genre</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="genre">
+                                  <p>The models are currently trained on the music of a single game. It might perform better if it was rather categorized by the use case of the music, i.e battle music, menu screen music.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -150,9 +184,8 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                            on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                            raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            You can find my code <a href=https://github.com/a-rahman/VGM_Piano_Composer>here</a>. 
+                            The base code I modified came from <a href=https://github.com/Skuldur/Classical-Piano-Composer>here</a>.
                         </div>
                     </div>
                 </div>
