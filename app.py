@@ -10,36 +10,36 @@ import time
 def static_page():
     return render_template('index.html')
 
-@app.route('/default.mid')
+@app.route('/ffx.mid')
 def default():
     t0 = time.time()
-    model_file, note_file, song_length = r'VGM_Piano_Composer/weights.hdf5', r'VGM_Piano_Composer/data/notes', 500 
+    model_file, note_file, song_length = r'VGM_Piano_Composer/ffx.hdf5', r'VGM_Piano_Composer/data/ffx', 125 
     midi_stream = generate(model_file, note_file, song_length)
-    midi_stream.write('midi', fp='temp.mid')
-    temp = open('temp.mid', 'rb')
+    midi_stream.write('midi', fp='ffx_temp.mid')
+    temp = open('ffx_temp.mid', 'rb')
     print("It took {} to run".format(time.time()-t0))
-    return send_file(temp, mimetype='audio/midi')
+    return Response(temp, mimetype='audio/midi')
 
 @app.route('/ffvii.mid')
 def ffvii():
     t0 = time.time()
-    model_file, note_file, song_length = r'VGM_Piano_Composer/weights.hdf5', r'VGM_Piano_Composer/data/notes', 500 
+    model_file, note_file, song_length = r'VGM_Piano_Composer/ff7.hdf5', r'VGM_Piano_Composer/data/ff7', 125 
     midi_stream = generate(model_file, note_file, song_length)
     midi_stream.write('midi', fp='ff7_temp.mid')
     temp = open('ff7_temp.mid', 'rb')
     print("It took {} to run".format(time.time()-t0))
-    return send_file(temp, mimetype='audio/midi')
+    return Response(temp, mimetype='audio/midi')
 
 @app.route('/ocarina.mid')
 def ocarina():
     t0 = time.time()
-    model_file, note_file, song_length = r'VGM_Piano_Composer/weights.hdf5', r'VGM_Piano_Composer/data/notes', 500 
+    model_file, note_file, song_length = r'VGM_Piano_Composer/ocarina.hdf5', r'VGM_Piano_Composer/data/ocarina', 125 
     midi_stream = generate(model_file, note_file, song_length)
     midi_stream.write('midi', fp='oot_temp.mid')
     temp = open('oot_temp.mid', 'rb')
     print("It took {} to run".format(time.time()-t0))
-    return send_file(temp, mimetype='audio/midi')
+    return Response(temp, mimetype='audio/midi')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run()
     
