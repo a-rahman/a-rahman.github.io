@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, Response, send_file
 import sys
-#sys.path.insert(0, "/VGM-Piano-Composer/")
-from VGM_Piano_Composer.predict import generate
 app = Flask(__name__)
 import time
 import glob
