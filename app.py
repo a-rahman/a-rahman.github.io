@@ -8,6 +8,7 @@ import random
 
 ff7_files = glob.glob(r'ff7_output/*.mid')
 oot_files = glob.glob(r'oot_output/*.mid')
+mario_files = glob.glob(r'mario_output/*.mid')
 
 
 @app.route('/')
@@ -20,11 +21,18 @@ def ffvii():
     temp = open(random.choice(ff7_files), 'rb')
     return Response(temp, mimetype='audio/midi')
 
+
 @app.route('/ocarina.mid')
 def ocarina():
     temp = open(random.choice(oot_files), 'rb')
     return Response(temp, mimetype='audio/midi')
 
+
+@app.route('/mario.mid')
+def mario():
+    temp = open(random.choice(mario_files), 'rb')
+    return Response(temp, mimetype='audio/midi')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
-    
