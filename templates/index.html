@@ -82,7 +82,7 @@
         <div class="col-lg-8 text-center">
           <h2 class="text-white mt-0">Video Game Music Generator</h2>
           <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Choose the style of music to generate. </p>
+          <p class="text-white-50 mb-4">Each button generates an original music file in the style of that game. For details look below.</p>
           <!--<a class="btn btn-light btn-xl js-scroll-trigger" href="ffx.mid">FFX</a>-->
           <div class="container">
               <div class="row">
@@ -253,14 +253,14 @@
                         <div class="card-body w3-dark-grey" id="modelExplanation">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="#" data-toggle="collapse" data-target="#collapseOneA">Tell me more about the model.</a>
+                                    <a href="#" data-toggle="collapse" data-target="#collapseOneA">More about the model</a>
                                 </div>
                                 <div class="card-body collapse" data-parent="#modelExplanation" id="collapseOneA">
                                     <div class="panel-group" id="details">
-                                        <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments is how the model is trained.</p>
+                                        <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments are how the model is trained.</p>
                                         <div class="panel">
-                                            <a data-toggle="collapse" data-parent="#details" href="#backprop">About Back Propagation &raquo;
-                                            </a>
+                                            <a data-toggle="collapse" data-parent="#details" href="#backprop">About Back Propagation &dArr;
+                                            </a><br>
                                             <div id="backprop" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                   <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the layer above the output. How much the parameter changes is calculated in a process called gradient descent. The change is taken as the error in that layer, and is used similarly to change the parameters of the layer above that. This way the changes move up the layers all the way back to the input, in other words the errors propagate back through the whole model.</p>
@@ -268,7 +268,7 @@
                                             </div>
                                         </div>
                                         <div class="panel ">
-                                            <a data-toggle="collapse" data-parent="#details" href="#lstm">About LSTMs &raquo;
+                                            <a data-toggle="collapse" data-parent="#details" href="#lstm">About LSTMs &dArr;
                                             </a>
                                             <div id="lstm" class="panel-collapse collapse">
                                                 <div class="panel-body">
@@ -302,7 +302,7 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            <p>There are several points in which the model is deficient. </p>
+                            <p>There are several points where the model can be further developed. </p>
                             
                             <div class="card">
                               <div class="card-header">
@@ -343,7 +343,7 @@
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Can I do this myself?
+                  Making your own
                 </button>
               </h5>
                     </div>
