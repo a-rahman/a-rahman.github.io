@@ -40,8 +40,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#music">Music Generator</a>
+                <a class="dropdown-item" href="#text">Text Generator</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#aboutMe">About Me</a>
@@ -76,7 +80,7 @@
   </header>
 
   <!-- About Section -->
-  <section class="page-section bg-dark" id="projects">
+  <section class="page-section bg-dark" id="music">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
@@ -85,37 +89,37 @@
           <p class="text-white-50 mb-4">Each button generates an original music file in the style of that game. For details look below.</p>
           <!--<a class="btn btn-light btn-xl js-scroll-trigger" href="ffx.mid">FFX</a>-->
           <div class="container">
-              <div class="row">
-                <div class="col-sm">
-                    <a class="btn btn-light btn-xl js-scroll-trigger" href="ffvii.mid">FFVII</a><br><br>
-                    <a data-toggle="collapse" data-parent="#details" href="#ff7list">FFVII Track List</a>
-                    <div id="ff7list" class="panel-collapse collapse">
-                        <div class="panel-body">
-                          <a href="http://www.finalfantasymusicscores.com/FFMS/PIANO.html">Midi Source</a>
-                          <font color="white"><ul class="text-left">
-                            <li>FF7AC-AerisTheme.mid</li>
-                            <li>FF7AC-Sign.mid</li>
-                            <li>FF7AC-ThoseWhoFight.mid</li>
-                            <li>FF7AC-TifasTheme.mid</li>
-                            <li>FF7-AerisTheme.mid</li>
-                            <li>FF7-AnxiousHeart.mid</li>
-                            <li>FF7-BarretsTheme.mid</li>
-                            <li>FF7-BattleTheme2Pianos.mid</li>
-                            <li>FF7-ChasingBlackCapedMan.mid</li>
-                            <li>FF7-Debut.mid</li>
-                            <li>FF7-HoldingThoughtsInMyHeart.mid</li>
-                            <li>FF7-InterruptedByFireworks.mid</li>
-                            <li>FF7-JenovaReunion2Pianos.mid</li>
-                            <li>FF7-OtherSideOfTheMountain.mid</li>
-                            <li>FF7-RedXIII.mid</li>
-                            <li>FF7-SephirothsTheme.mid</li>
-                            <li>FF7-TifaRemembers.mid</li>
-                            <li>FF7-VincentsTheme.mid</li>
-                            <li>FF7-WorldThemePC.mid</li>
-                          </ul></font>
-                        </div>
-                    </div>
+            <div class="row">
+              <div class="col-sm">
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="ffvii.mid">FFVII</a><br><br>
+                <a data-toggle="collapse" data-parent="#details" href="#ff7list">FFVII Track List</a>
+                <div id="ff7list" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <a href="http://www.finalfantasymusicscores.com/FFMS/PIANO.html">Midi Source</a>
+                    <font color="white"><ul class="text-left">
+                      <li>FF7AC-AerisTheme.mid</li>
+                      <li>FF7AC-Sign.mid</li>
+                      <li>FF7AC-ThoseWhoFight.mid</li>
+                      <li>FF7AC-TifasTheme.mid</li>
+                      <li>FF7-AerisTheme.mid</li>
+                      <li>FF7-AnxiousHeart.mid</li>
+                      <li>FF7-BarretsTheme.mid</li>
+                      <li>FF7-BattleTheme2Pianos.mid</li>
+                      <li>FF7-ChasingBlackCapedMan.mid</li>
+                      <li>FF7-Debut.mid</li>
+                      <li>FF7-HoldingThoughtsInMyHeart.mid</li>
+                      <li>FF7-InterruptedByFireworks.mid</li>
+                      <li>FF7-JenovaReunion2Pianos.mid</li>
+                      <li>FF7-OtherSideOfTheMountain.mid</li>
+                      <li>FF7-RedXIII.mid</li>
+                      <li>FF7-SephirothsTheme.mid</li>
+                      <li>FF7-TifaRemembers.mid</li>
+                      <li>FF7-VincentsTheme.mid</li>
+                      <li>FF7-WorldThemePC.mid</li>
+                    </ul></font>
+                  </div>
                 </div>
+              </div>
                 <br>
                 <div class="col-sm">
                   <a class="btn btn-light btn-xl js-scroll-trigger" href="ocarina.mid">Ocarina of Time</a><br><br>
@@ -231,8 +235,8 @@
                       </div>
                     </div>
                 </div>
-              </div>
             </div>
+          </div>
           <hr class="divider light my-4">
           
           <div class="container">
@@ -355,12 +359,27 @@
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
+  <section class="page-section bg-dark" id="text">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">GPT-2 Text Generator</h2>
+          <hr class="divider light my-4">
+          <p class="text-white-50 mb-4">A demonstration of OpenAI's GPT-2 text generator. Given a starting prompt, the generator will continue on. OpenAI did not release the full model, so this is a weaker model released so that it could be played with.</p>
+          <form method='post' action='/text'>
+            <textarea name="input" required cols=30></textarea><br>
+            <input type="submit" value="Generate" class="btn btn-light btn-xl">
+          </form><br>
+          <p class="text-white mb-4">{{ text }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- About Me Section -->
   <section class="page-section bg-primary text-white" id=aboutMe>
     <div class="container text-center">
