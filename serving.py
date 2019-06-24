@@ -2,7 +2,6 @@ import numpy as np
 
 # Communication to TensorFlow server via gRPC
 import grpc
-import tensorflow as tf
 
 # TensorFlow serving stuff to send messages
 from tensorflow_serving.apis import predict_pb2
@@ -25,6 +24,6 @@ def generate_tokens(input_tokens):
     request.inputs['input'].CopyFrom(make_tensor_proto(input_data,
                                                        shape=input_data.shape))
     response = stub.Predict(request, timeout)
-    result = response.outputs['output']
-    # print(tf.make_ndarray(result))
-    return tf.make_ndarray(result)
+    tensor = response.outputs['output']
+
+    return [tensor.int_val]
