@@ -14,7 +14,24 @@
 
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-32x32.png') }}" sizes="32x32" />
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-16x16.png') }}" sizes="16x16" />
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+     $('form').on('submit', function(event) {
+       $.ajax({
+          data : {
+             input : $('#input').val()
+                 },
+             type : 'POST',
+             url : '/text'
+            })
+        .done(function(data) {
+          document.getElementById("output").innerHTML = data.output
+      });
+      event.preventDefault();
+      });
+    });
+  </script>
 
   <!-- Font Awesome Icons -->
   <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -373,11 +390,13 @@
           <h2 class="text-white mt-0">GPT-2 Text Generator</h2>
           <hr class="divider light my-4">
           <p class="text-white-50 mb-4">A demonstration of<a href=https://openai.com/blog/better-language-models> OpenAI's GPT-2 text generator</a>. Given a starting prompt, the generator will continue on. OpenAI did not release the full model, so this is a weaker model released so that it could be played with.</p>
-          <form method='post' action='/text'>
-            <textarea name="input" required cols=30></textarea><br>
-            <input type="submit" value="Generate" class="btn btn-light btn-xl">
+          <!-- <form method='post' action='/text'> -->
+          <form>
+            <textarea id="input" name="input" required cols=30></textarea><br>
+            <button type="submit" class="btn btn-light btn-xl">Generate</button>
           </form><br>
-          <p class="text-white mb-4">{{ text }}</a>
+          <div class="text-white mb-4" id="output"></div>
+          <!-- <p class="text-white mb-4">{{ text }}</p> -->
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response, send_file
+from flask import Flask, render_template, request, Response, send_file, jsonify
 import sys
 import time
 import glob
@@ -38,13 +38,13 @@ def mario():
     return Response(temp, mimetype='audio/midi')
 
 
-@app.route('/text', methods=['GET', 'POST'])
+@app.route('/text', methods=['POST'])
 def generate_text():
     if request.form:
         input_text = enc.encode(request.form['input'])
         tokens = generate_tokens(input_text)
         text = enc.decode(tokens[0])
-    return render_template('index.html', text=text)
+    return jsonify({'output':text})
 
 
 if __name__ == '__main__':
