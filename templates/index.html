@@ -26,8 +26,20 @@
              url : '/text'
             })
         .done(function(data) {
-          document.getElementById("output").innerHTML = data.output
+          document.getElementById("output").innerHTML = data.output;
       });
+      for (i = 0; i < 5; i++) {
+        $.ajax({
+          data : {
+             input : data.output
+                 },
+             type : 'POST',
+             url : '/text'
+            })
+        .done(function(data) {
+          document.getElementById("output").innerHTML = data.output;
+          });
+      }
       event.preventDefault();
       });
     });
