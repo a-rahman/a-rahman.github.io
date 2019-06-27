@@ -28,10 +28,11 @@
         .done(function(data) {
           document.getElementById("output").innerHTML = data.output;
       });
+      var text = data.output;
       for (i = 0; i < 5; i++) {
         $.ajax({
           data : {
-             input : data.output
+             input : text
                  },
              type : 'POST',
              url : '/text'
@@ -39,6 +40,7 @@
         .done(function(data) {
           document.getElementById("output").innerHTML = data.output;
           });
+          text = data.output;
       }
       event.preventDefault();
       });
