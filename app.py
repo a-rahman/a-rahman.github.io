@@ -44,7 +44,7 @@ def generate_text():
         input_text = enc.encode(request.form['input'])
         tokens = generate_tokens(input_text)
         text = enc.decode(tokens[0])
-    return jsonify({'output':text})
+    return jsonify({'output': text})
 
 
 if __name__ == '__main__':

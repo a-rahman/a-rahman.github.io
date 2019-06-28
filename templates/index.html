@@ -16,22 +16,27 @@
   <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-16x16.png') }}" sizes="16x16" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
-  $(document).ready(function() {
-     $('form').on('submit', function(event) {
-       $.ajax({
-          data : {
-             input : $('#input').val()
-                 },
-             type : 'POST',
-             url : '/text',
-             beforeSend: function(){
-              document.getElementById("output").innerHTML = "Processing...";
-              }
-            })
-        .done(function(data) {
-          document.getElementById("output").innerHTML = data.output;
+    var updateText = function(inputText) {
+      console.log(inputText);
+      var output;
+      $.ajax({ data : { input : inputText},
+               type : 'POST',
+               url : '/text',
+              //  async : false,
+               beforeSend: function(){
+                            document.getElementById("output").innerHTML = "Processing...";
+                            },
+               success : function(data) {
+                         document.getElementById("output").innerHTML = data.output;
+                         output = data.output;
+                         }
       });
       event.preventDefault();
+      return output;
+    }
+  $(document).ready(function() {
+     $('form').on('submit', function(event) {
+      var temp = updateText($('#input').val());
       });
     });
   </script>
@@ -72,11 +77,6 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#aboutMe">About Me</a>
           </li>
-          <!--
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-          </li>
-          -->
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
@@ -101,7 +101,7 @@
     </div>
   </header>
 
-  <!-- About Section -->
+  <!-- Projects Section -->
   <section class="page-section bg-dark" id="music">
     <div class="container">
       <div class="row justify-content-center">
@@ -442,14 +442,7 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <!--
-  <footer class="bg-light py-5">
-    <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 - Start Bootstrap</div>
-    </div>
-  </footer>
-  -->
+  
   <!-- Bootstrap core JavaScript -->
   <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
