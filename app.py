@@ -17,7 +17,7 @@ enc = encoder.get_encoder('345M', 'models')
 
 @app.route('/')
 def static_page():
-    return render_template('index.html', text='')
+    return render_template('index.html')
 
 
 @app.route('/ffvii.mid')
