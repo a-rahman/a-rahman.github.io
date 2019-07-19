@@ -10,12 +10,12 @@ from tensorflow.contrib.util import make_tensor_proto
 
 timeout = 60.0
 
-channel = grpc.insecure_channel('localhost:8501')
-# channel = grpc.insecure_channel('10.150.0.10:8501')
+# channel = grpc.insecure_channel('localhost:8501')
+channel = grpc.insecure_channel('10.150.0.10:8501')
 stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
 request = predict_pb2.PredictRequest()
 
-request.model_spec.name = '5'
+request.model_spec.name = 'short'
 request.model_spec.signature_name = 'serving_default'
 
 
