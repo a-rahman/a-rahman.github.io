@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A place for my personal projects.">
+  <meta name="og:description" content="A place for my personal projects.">
+  <meta name="og:image" content="static/img/bg-masthead.png">
+  <meta name="author" content="Abrar Rahman">
+
+  <title>Abrar A. Rahman</title>
+
+  <link rel="icon" type="image/png" href="static/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="static', filename='img/favicon-16x16.png" sizes="16x16" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+  var ff7 = function() {
+    var num = String(Math.floor(Math.random()*1000));
+    var fname = "/static/mp3s/ff7_"+num+".mp3";
+    $("#mp3source").attr('src', fname);
+    var audio = document.getElementById("player")
+    audio.load()
+  };
+  var oot = function() {
+    var num = String(Math.floor(Math.random()*1000));
+    var fname = "/static/mp3s/ocarina_"+num+".mp3";
+    $("#mp3source").attr('src', fname);
+    var audio = document.getElementById("player")
+    audio.load()
+  };
+  var mario = function() {
+    var num = String(Math.floor(Math.random()*1000));
+    var fname = "/static/mp3s/mario_"+num+".mp3";
+    $("#mp3source").attr('src', fname);
+    var audio = document.getElementById("player")
+    audio.load()
+  };
+  
+  var post = function(input) {
+    return fetch("/text", {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'input='+input
+  })};
+
+  async function updateText(text) {
+    var bt = document.getElementById('generate');
+    bt.disabled = true;
+    for (let i = 0; i < 20; i++) {
+      data = await post(text);
+      resp = await data.json();
+      text = resp.output;
+      document.getElementById("output").innerHTML = text;
+    };
+    bt.disabled = false;
+  };
+
+  $(document).ready(function() {
+    $('form').on('submit', function(event) {      
+	updateText($('#input').val());
+	event.preventDefault();
+    });
+  });
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="static/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+  <!-- Theme CSS - Includes Bootstrap -->
+  <link href="static/css/creative.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Abrar A. Rahman</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item js-scroll-trigger" href="#music">Music Generator</a>
+                <a class="dropdown-item js-scroll-trigger" href="#text">Text Generator</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#aboutMe">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <h1 class="text-uppercase text-white font-weight-bold">Working With Data</h1>
+          <hr class="divider my-4">
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <p class="text-white-75 font-weight-light mb-5">Machine Learning. Artificial Intelligence.</p>
+          <!--a class="btn btn-primary btn-xl" href="default.mid">Find Out More</a-->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Projects Section -->
+  <section class="page-section bg-dark" id="music">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">Video Game Music Generator</h2>
+          <hr class="divider light my-4">
+          <p class="text-white-50 mb-4">Each button generates an original music file in the style of that game. For details look below.</p>
+          <!--<a class="btn btn-light btn-xl js-scroll-trigger" href="ffx.mid">FFX</a>-->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm mb-3">
+                <a class="btn btn-light btn-xl js-scroll-trigger" onclick="ff7()">FFVII</a><br><br>
+                <a data-toggle="collapse" data-parent="#details" href="#ff7list">FFVII Track List</a>
+                <div id="ff7list" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <a href="http://www.finalfantasymusicscores.com/FFMS/PIANO.html">Midi Source</a>
+                    <font color="white"><ul class="text-left">
+                      <li>FF7AC-AerisTheme.mid</li>
+                      <li>FF7AC-Sign.mid</li>
+                      <li>FF7AC-ThoseWhoFight.mid</li>
+                      <li>FF7AC-TifasTheme.mid</li>
+                      <li>FF7-AerisTheme.mid</li>
+                      <li>FF7-AnxiousHeart.mid</li>
+                      <li>FF7-BarretsTheme.mid</li>
+                      <li>FF7-BattleTheme2Pianos.mid</li>
+                      <li>FF7-ChasingBlackCapedMan.mid</li>
+                      <li>FF7-Debut.mid</li>
+                      <li>FF7-HoldingThoughtsInMyHeart.mid</li>
+                      <li>FF7-InterruptedByFireworks.mid</li>
+                      <li>FF7-JenovaReunion2Pianos.mid</li>
+                      <li>FF7-OtherSideOfTheMountain.mid</li>
+                      <li>FF7-RedXIII.mid</li>
+                      <li>FF7-SephirothsTheme.mid</li>
+                      <li>FF7-TifaRemembers.mid</li>
+                      <li>FF7-VincentsTheme.mid</li>
+                      <li>FF7-WorldThemePC.mid</li>
+                    </ul></font>
+                  </div>
+                </div>
+              </div>
+                <br>
+                <div class="col-sm mb-3">
+                  <a class="btn btn-light btn-xl js-scroll-trigger" onclick="oot()">Ocarina of Time</a><br><br>
+                  <a data-toggle="collapse" data-parent="#details" href="#ootlist">OoT Track List</a>
+                    <div id="ootlist" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <a href="magnet:?xt=urn:btih:11253408857317ef58dbf6a29abc54198237d910&dn=Video+Game+Piano+Sheet+Music+and+Midi&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969">Midi Source (Magnet link)</a>
+                        <font color="white"><ul class="text-left">
+                          <li>Achievement!.mid</li>
+                          <li>BoleroofFire.mid</li>
+                          <li>BossBattle.mid</li>
+                          <li>EndingTheme.mid</li>
+                          <li>EscapeFromGanonsCastle.mid</li>
+                          <li>EscapeFromLonLonRanch.mid</li>
+                          <li>FairyFlying.mid</li>
+                          <li>FinalBattleAgainstGanon.mid</li>
+                          <li>ForestTemple.mid</li>
+                          <li>GameOver.mid</li>
+                          <li>GanondorfBattle.mid</li>
+                          <li>GanonsTower.mid</li>
+                          <li>GerudoValley.mid</li>
+                          <li>GoronCity.mid</li>
+                          <li>GreatFairyFountain.mid</li>
+                          <li>HorseRace.mid</li>
+                          <li>House.mid</li>
+                          <li>HyruleCastleCourtyard.mid</li>
+                          <li>HyruleField.mid</li>
+                          <li>IceCavern.mid</li>
+                          <li>JabuJabusBelly.mid</li>
+                          <li>KaeporaGaeborasTheme.mid</li>
+                          <li>KakarikoVillage.mid</li>
+                          <li>KokiriForest.mid</li>
+                          <li>Kotake&KoumesTheme.mid</li>
+                          <li>LakesideLaboratory.mid</li>
+                          <li>LonLonRanch.mid</li>
+                          <li>LostWoods.mid</li>
+                          <li>Market.mid</li>
+                          <li>MasterSword.mid</li>
+                          <li>MedalGetFanfare.mid</li>
+                          <li>MinuetofForest.mid</li>
+                          <li>NewOcarinaMelody.mid</li>
+                          <li>NocturneofShadow.mid</li>
+                          <li>OpenDoorofTime.mid</li>
+                          <li>OpenTreasureChest.mid</li>
+                          <li>PreludeofLight.mid</li>
+                          <li>RequiemofSpirit.mid</li>
+                          <li>Riddle_of_Doom.mid</li>
+                          <li>SerenadeofWater.mid</li>
+                          <li>SheiksTheme.mid</li>
+                          <li>ShootingGallery.mid</li>
+                          <li>Shop.mid</li>
+                          <li>SongofStorms.mid</li>
+                          <li>SongofTime.mid</li>
+                          <li>SpiritTemple.mid</li>
+                          <li>TempleofTime.mid</li>
+                          <li>TheGreatDekuTree.mid</li>
+                          <li>TitleScreen.mid</li>
+                          <li>ZeldasTheme.mid</li>
+                          <li>ZorasDomain.mid</li>
+                        </ul></font>
+                      </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm mb-3">
+                  <a class="btn btn-light btn-xl js-scroll-trigger" onclick="mario()">Super Mario</a><br><br>
+                  <a data-toggle="collapse" data-parent="#details" href="#mariolist">Mario Track List</a>
+                    <div id="mariolist" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <a href="magnet:?xt=urn:btih:11253408857317ef58dbf6a29abc54198237d910&dn=Video+Game+Piano+Sheet+Music+and+Midi&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969">Midi Source (Magnet link)</a>
+                        <font color="white"><ul class="text-left">
+                          <li>Airships.mid</li>
+                          <li>Athletic2.mid</li>
+                          <li>Athletic.mid</li>
+                          <li>Bonus.mid</li>
+                          <li>Boss.mid</li>
+                          <li>BowserBattle.mid</li>
+                          <li>Bowser.mid</li>
+                          <li>CourseClearFanfare.mid</li>
+                          <li>Death.mid</li>
+                          <li>Ending.mid</li>
+                          <li>EndingTheme.mid</li>
+                          <li>ForestofIllusion.mid</li>
+                          <li>GameOver.mid</li>
+                          <li>GhostHouse.mid</li>
+                          <li>HammerBros.mid</li>
+                          <li>KoopaKids.mid</li>
+                          <li>MushroomHouse.mid</li>
+                          <li>Overworld2.mid</li>
+                          <li>Overworld.mid</li>
+                          <li>PrincessPeachisRescued.mid</li>
+                          <li>Secret.mid</li>
+                          <li>StarRoad.mid</li>
+                          <li>SubCastle.mid</li>
+                          <li>Swimming.mid</li>
+                          <li>TitleScreen.mid</li>
+                          <li>Underwater.mid</li>
+                          <li>ValleyofBowser.mid</li>
+                          <li>VanillaDome.mid</li>
+                          <li>World1GrassLand.mid</li>
+                          <li>World2KoopahariDesert.mid</li>
+                          <li>World3SeaSide.mid</li>
+                          <li>World4BigIsland.mid</li>
+                          <li>World5SkyLand-Ground.mid</li>
+                          <li>World5SkyLand-Sky.mid</li>
+                          <li>World6IceLand.mid</li>
+                          <li>World7PipeMaze.mid</li>
+                          <li>World8DarkLand.mid</li>
+                          <li>WorldClear.mid</li>
+                          <li>WorldMap.mid</li>
+                          <li>YoshisIsland.mid</li>
+                        </ul></font>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <hr class="divider light my-4">
+          <audio id="player" controls>
+            <source id="mp3source" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <div class="container">
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0 d-inline">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              How does it work?
+                            </button>
+                        </h5>
+                         <!--<a href="#" data-target="[data-parent='#modelExplanation']" data-toggle="collapse" class="my-2 float-right">toggle all</a>-->
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                          <p>Unlike other types of music files, midi files don't contain a representation of the waveforms of the sounds, but the notes that an instrument would play. Given a set of midi files with only piano tracks, the model takes in 100 notes and tries to guess what the next note is. After countless iterations of guessing and checking, the model starts doing a fair job of guessing what comes next. To generate it's own music, you can start the model off with some notes, let it guess the next note, feed that note back into the model, starting the process that will let the model to go off and create it's own score.</p>
+                        </div>
+                        <div class="card-body w3-dark-grey" id="modelExplanation">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="#" data-toggle="collapse" data-target="#collapseOneA">More about the model</a>
+                                </div>
+                                <div class="card-body collapse" data-parent="#modelExplanation" id="collapseOneA">
+                                    <div class="panel-group" id="details">
+                                        <p>The model is a type of neural network. It takes inputs, in our case a series of notes, and performs layers of transformations until it comes out with a single output note. The parameters of the transformations start off randomized, and if the output is incorrect, the parameters are adjusted to try and get the correct output. These adjustments are how the model is trained.</p>
+                                        <div class="panel">
+                                            <a data-toggle="collapse" data-parent="#details" href="#backprop">About Back Propagation &dArr;
+                                            </a><br>
+                                            <div id="backprop" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                  <p>The process in which the parameters are adjusted is called back propagation. In back propagation the error between the desired output and actual output is used to change the parameters of the layer above the output. How much the parameter changes is calculated in a process called gradient descent. The change is taken as the error in that layer, and is used similarly to change the parameters of the layer above that. This way the changes move up the layers all the way back to the input, in other words the errors propagate back through the whole model.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel ">
+                                            <a data-toggle="collapse" data-parent="#details" href="#lstm">About LSTMs &dArr;
+                                            </a>
+                                            <div id="lstm" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>Since we are dealing with music, the notes played in the past have a strong influence on the next note played. This makes it necessary for the model to have some kind of memory. This model has memory in the form of Long Short Term Memory (LSTM) layers. During model training, the LSTM layer tunes a forget gate an remember gate as it learns which past notes are most relevant to the future. In this way longer term patterns in the music can be remembered, rather than just what is in the immediate past.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="#" data-toggle="collapse" data-target="#collapseOneB">Child B</a>
+                                </div>
+                                <div class="card-body collapse" data-parent="#modelExplanation" id="collapseOneB">
+                                    Another flipp runch wolf moon tempor, sunt aliqua put a bird.
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How can it be improved?
+                </button>
+              </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>There are several points where the model can be further developed. </p>
+                            
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#timing">Note timing</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="timing">
+                                    Note spacing is not variable. The training data had a commonly used spacing, so the all of the output used that spacing rather than learn what the spacing should be. To implement this, a larger model would be needed to learn these timings.
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#cutoff">Song Cutoff</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="cutoff">
+                                  <p>There is no sense of the beginning or end of the song. The songs the model is trained on is treated as if it is one long song it is trying to learn instead of separate tracks. So when a song is generated, there is a sharp cutoff rather a planned ending. A way to deal with this might be to encode the start and end of a song as a type of note itself.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#instruments">Instruments</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="instruments">
+                                  <p>The generator only makes piano music. To generate a full orchestra the proper training data is needed and would need a larger network to deal with so many instruments.</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-header">
+                                  <a href="#" data-toggle="collapse" data-target="#genre">Genre</a>
+                              </div>
+                                <div class="card-body collapse" data-parent="#collapseTwo" id="genre">
+                                  <p>The models are currently trained on the music of a single game. It might perform better if it was rather categorized by the use case of the music, i.e battle music, menu screen music.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Making your own
+                </button>
+              </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            You can find my code <a href=https://github.com/a-rahman/VGM_Piano_Composer>here</a>. 
+                            The base code I modified came from <a href=https://github.com/Skuldur/Classical-Piano-Composer>here</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section bg-success" id="text">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="text-white mt-0">GPT-2 Text Generator (Disabled)</h2>
+          <hr class="divider light my-4">
+          <p class="text-white-50 mb-4">A demonstration of<a href=https://openai.com/blog/better-language-models> OpenAI's GPT-2 text generator</a>. Given a starting prompt, the generator will create about a hundred more words of text.</p>
+          <!-- <form method='post' action='/text'> -->
+          <form>
+            <textarea id="input" name="input" required cols=30></textarea><br>
+            <button id="generate" type="submit" class="btn btn-light btn-xl">Generate</button>
+          </form><br>
+          <div class="text-white mb-4" id="output"></div>
+          <!-- <p class="text-white mb-4">{{ text }}</p> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- About Me Section -->
+  <section class="page-section bg-primary text-white" id=aboutMe>
+    <div class="container text-center">
+      <h2 class="mt-0">About Me</h2>
+      <hr class="divider light my-4">
+      <h3 class="mb-4">I am an Electrical Engineer by <a class="text-dark" href="http://cooper.edu">training</a>, Computer Vision Researcher by <a class="text-dark" href="https://www.sri.com/research-development/computer-vision">vocation</a>.</h3>
+    </div>
+  </section>
+  
+
+  <!-- Contact Section -->
+  <section class="page-section" id="contact" >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0">Get In Touch</h2>
+          <hr class="divider my-4">
+          <!--<p class="text-muted mb-5">Please don't</p>-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 ml-auto text-center">
+          <a href="https://www.linkedin.com/in/abrar-rahman-98528092/"><i class="fab fa-linkedin-in fa-3x mb-3 text-muted"></i></a>
+          <a class="d-block" href="https://www.linkedin.com/in/abrar-rahman-98528092/">LinkedIn</a>
+        </div>
+        <div class="col-lg-4 text-center">
+          <a href="https://github.com/a-rahman"><i class="fab fa-github fa-3x mb-3 text-muted"></i></a>
+          <a class="d-block" href="https://github.com/a-rahman">GitHub</a>
+        </div>
+        <div class="col-lg-4 mr-auto text-center">
+          <a href="mailto:abrar.a.rahman@gmail.com"><i class="fas fa-envelope fa-3x mb-3 text-muted"></i></a>
+          <!-- Make sure to change the email address in anchor text AND the link below! -->
+          <a class="d-block" href="mailto:abrar.a.rahman@gmail.com">E-mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{ url_for('static', filename='js/creative.js') }}"></script>
+
+</body>
+
+</html>
