@@ -18,21 +18,21 @@
   <script>
   var ff7 = function() {
     var num = String(Math.floor(Math.random()*1000));
-    var fname = "/static/mp3s/ff7_"+num+".mp3";
+    var fname = "static/ff7_mp3s/ff7_"+num+".mp3";
     $("#mp3source").attr('src', fname);
     var audio = document.getElementById("player")
     audio.load()
   };
   var oot = function() {
     var num = String(Math.floor(Math.random()*1000));
-    var fname = "/static/mp3s/ocarina_"+num+".mp3";
+    var fname = "static/mario_mp3s/ocarina_"+num+".mp3";
     $("#mp3source").attr('src', fname);
     var audio = document.getElementById("player")
     audio.load()
   };
   var mario = function() {
     var num = String(Math.floor(Math.random()*1000));
-    var fname = "/static/mp3s/mario_"+num+".mp3";
+    var fname = "static/oot_mp3s/mario_"+num+".mp3";
     $("#mp3source").attr('src', fname);
     var audio = document.getElementById("player")
     audio.load()
